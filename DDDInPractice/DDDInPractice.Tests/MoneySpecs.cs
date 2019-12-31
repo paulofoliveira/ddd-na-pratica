@@ -53,13 +53,7 @@ namespace DDDInPractice.Tests
         [InlineData(0, 0, 0, -4, 0, 0)]
         [InlineData(0, 0, 0, 0, -5, 0)]
         [InlineData(0, 0, 0, 0, 0, -6)]
-        public void Cannot_create_money_with_negative_value(
-          int oneCentCount,
-          int tenCentCount,
-          int quarterCount,
-          int oneDollarCount,
-          int fiveDollarCount,
-          int twentyDollarCount)
+        public void Cannot_create_money_with_negative_value(int oneCentCount, int tenCentCount, int quarterCount, int oneDollarCount, int fiveDollarCount, int twentyDollarCount)
         {
             Action action = () => new Money(
                 oneCentCount,
@@ -82,16 +76,9 @@ namespace DDDInPractice.Tests
         [InlineData(1, 2, 3, 4, 5, 6, 149.96)]
         [InlineData(11, 0, 0, 0, 0, 0, 0.11)]
         [InlineData(110, 0, 0, 0, 100, 0, 501.1)]
-        public void Amount_is_calculated_correctly(
-    int oneCentCount,
-    int tenCentCount,
-    int quarterCount,
-    int oneDollarCount,
-    int fiveDollarCount,
-    int twentyDollarCount,
-    decimal expectedAmount)
+        public void Amount_is_calculated_correctly(int oneCentCount, int tenCentCount, int quarterCount, int oneDollarCount, int fiveDollarCount, int twentyDollarCount, decimal expectedAmount)
         {
-            Money money = new Money(
+            var money = new Money(
                 oneCentCount,
                 tenCentCount,
                 quarterCount,
@@ -130,6 +117,18 @@ namespace DDDInPractice.Tests
             };
 
             action.Should().Throw<InvalidOperationException>();
+        }
+
+        [Theory]
+        [InlineData(1, 0, 0, 0, 0, 0, "¢1")]
+        [InlineData(0, 0, 0, 1, 0, 0, "$1.00")]
+        [InlineData(1, 0, 0, 1, 0, 0, "$1.01")]
+        [InlineData(0, 0, 2, 1, 0, 0, "$1.50")]
+        public void To_string_returns_correct_string_representation(int oneCentCount, int tenCentCount, int quarterCount, int oneDollarCount, int fiveDollarCount, int twentyDollarCount, string expectedString)
+        {
+            var money = new Money(oneCentCount, tenCentCount, quarterCount, oneDollarCount, fiveDollarCount, twentyDollarCount);
+
+            money.ToString().Should().Be(expectedString);
         }
     }
 }

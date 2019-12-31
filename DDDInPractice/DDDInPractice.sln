@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDInPractice.Logic", "DDDI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDInPractice.Tests", "DDDInPractice.Tests\DDDInPractice.Tests.csproj", "{5D97DDB7-24CF-4212-BC49-973268300952}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDInPractice.UI", "DDDInPractice.UI\DDDInPractice.UI.csproj", "{6B877D21-E934-4F98-AAF1-8D53A0005668}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{5D97DDB7-24CF-4212-BC49-973268300952}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D97DDB7-24CF-4212-BC49-973268300952}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D97DDB7-24CF-4212-BC49-973268300952}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B877D21-E934-4F98-AAF1-8D53A0005668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B877D21-E934-4F98-AAF1-8D53A0005668}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B877D21-E934-4F98-AAF1-8D53A0005668}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B877D21-E934-4F98-AAF1-8D53A0005668}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
