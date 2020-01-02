@@ -8,12 +8,9 @@ namespace DDDInPractice.UI.Common
         {
             Initer.Init(@"Server=(localdb)\MSSqlLocalDB;Database=DDDInPractice;Trusted_Connection=true");
 
-            SnackMachine snackMachine;
+            var repository = new SnackMachineRepository();
 
-            using (var session = SessionFactory.OpenSession())
-            {
-                snackMachine = session.Get<SnackMachine>(1L);
-            }
+            SnackMachine snackMachine = repository.GetById(1L);
 
             var viewModel = new SnackMachineViewModel(snackMachine);
             _dialogService.ShowDialog(viewModel);

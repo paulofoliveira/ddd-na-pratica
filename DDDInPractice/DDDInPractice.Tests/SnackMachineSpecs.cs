@@ -1,13 +1,10 @@
 ﻿using DDDInPractice.Logic;
 using FluentAssertions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 using static DDDInPractice.Logic.Money;
+using static DDDInPractice.Logic.Snack;
 
 namespace DDDInPractice.Tests
 {
@@ -21,7 +18,7 @@ namespace DDDInPractice.Tests
 
             snackMachine.ReturnMoney();
 
-            snackMachine.MoneyInTransaction.Amount.Should().Be(0m);
+            snackMachine.MoneyInTransaction.Should().Be(0m);
         }
 
         [Fact]
@@ -32,7 +29,7 @@ namespace DDDInPractice.Tests
             snackMachine.InsertMoney(Cent);
             snackMachine.InsertMoney(Dollar);
 
-            snackMachine.MoneyInTransaction.Amount.Should().Be(1.01m);
+            snackMachine.MoneyInTransaction.Should().Be(1.01m);
         }
 
         [Fact]
@@ -47,16 +44,90 @@ namespace DDDInPractice.Tests
         }
 
         [Fact]
-        public void Money_in_transaction_goes_to_money_inside_after_purchase()
+        public void BuySnack_trades_inserted_money_for_a_snack()
         {
             var snackMachine = new SnackMachine();
-            snackMachine.InsertMoney(Dollar);
+
+            snackMachine.LoadSnacks(1, new SnackPile(Chocolate, 10, 1m));
+
             snackMachine.InsertMoney(Dollar);
 
-            snackMachine.BuySnack();
+            snackMachine.BuySnack(1);
 
-            snackMachine.MoneyInTransaction.Should().Be(None);
+            snackMachine.MoneyInTransaction.Should().Be(0);
             snackMachine.MoneyInside.Amount.Should().Be(2m);
+
+            snackMachine.GetSnackPile(1).Quantity.Should().Be(9);
+        }
+
+        [Fact]
+        public void Cannot_make_purchase_when_there_is_no_snacks()
+        {
+            // Tenta comprar um lanche em um slot que não possui lanches carregados ainda.
+
+            var snackMachine = new SnackMachine();
+
+            Action action = () => snackMachine.BuySnack(1);
+
+            action.Should().Throw<InvalidOperationException>();
+        }
+
+        [Fact]
+        public void Cannot_make_purchase_if_not_enough_money_inserted()
+        {
+            // Insere 1 dolar e tenta comprar um lanche que vale 2 dolares.
+
+            var snackMachine = new SnackMachine();
+            snackMachine.LoadSnacks(1, new SnackPile(Chocolate, 1, 2m));
+            snackMachine.InsertMoney(Dollar);
+
+            Action action = () => snackMachine.BuySnack(1);
+
+            action.Should().Throw<InvalidOperationException>();
+        }
+
+        [Fact]
+        public void Snack_machine_returns_money_with_highest_denomination_first()
+        {
+            var snackMachine = new SnackMachine();
+            snackMachine.LoadMoney(Dollar); // Carrega 1 dolar na maquina.
+
+            snackMachine.InsertMoney(Quarter);
+            snackMachine.InsertMoney(Quarter);
+            snackMachine.InsertMoney(Quarter);
+            snackMachine.InsertMoney(Quarter);
+
+            snackMachine.ReturnMoney();
+
+            snackMachine.MoneyInside.QuarterCount.Should().Be(4);
+            snackMachine.MoneyInside.OneDollarCount.Should().Be(0);
+        }
+
+        [Fact]
+        public void After_purchase_change_is_returned()
+        {
+            var snackMachine = new SnackMachine();
+            snackMachine.LoadSnacks(1, new SnackPile(Chocolate, 1, 0.5m));
+            snackMachine.LoadMoney(TenCent * 10);
+
+            snackMachine.InsertMoney(Dollar);
+            snackMachine.BuySnack(1);
+
+            snackMachine.MoneyInside.Amount.Should().Be(1.5m);
+            snackMachine.MoneyInTransaction.Should().Be(0m);
+        }
+
+        [Fact]
+        public void Cannot_buy_snack_if_not_enough_change()
+        {
+            var snackMachine = new SnackMachine();
+            snackMachine.LoadSnacks(1, new SnackPile(Chocolate, 1, 0.5m));
+
+            snackMachine.InsertMoney(Dollar);
+
+            Action action = () => snackMachine.BuySnack(1);
+
+            action.Should().Throw<InvalidOperationException>();
         }
     }
 }

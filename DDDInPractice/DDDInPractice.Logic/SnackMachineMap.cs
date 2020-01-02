@@ -1,4 +1,5 @@
-﻿using FluentNHibernate.Mapping;
+﻿using FluentNHibernate;
+using FluentNHibernate.Mapping;
 
 namespace DDDInPractice.Logic
 {
@@ -17,6 +18,13 @@ namespace DDDInPractice.Logic
                 y.Map(x => x.FiveDollarCount);
                 y.Map(x => x.TwentyDollarCount);
             });
+
+            // Reveal por conta da prop ser definida como "protected".
+            // Ao salvar, atualiza os slots que foram alterados com Cascade.SaveUpdate().
+
+            HasMany<Slot>(Reveal.Member<SnackMachine>("Slots"))
+                .Cascade.SaveUpdate()
+                .Not.LazyLoad();
         }
     }
 }
