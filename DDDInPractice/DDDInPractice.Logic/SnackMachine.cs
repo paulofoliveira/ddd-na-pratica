@@ -56,7 +56,7 @@ namespace DDDInPractice.Logic
             if (!MoneyInside.CanAllocate(MoneyInTransaction - snackPile.Price))
                 return "Not enough change";
 
-            return "";
+            return string.Empty;
         }
 
         public virtual void BuySnack(int position)
