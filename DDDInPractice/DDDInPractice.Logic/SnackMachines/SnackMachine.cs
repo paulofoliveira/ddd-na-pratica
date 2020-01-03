@@ -1,9 +1,11 @@
-﻿using System;
+﻿using DDDInPractice.Logic.Common;
+using DDDInPractice.Logic.SharedKernel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using static DDDInPractice.Logic.Money;
+using static DDDInPractice.Logic.SharedKernel.Money;
 
-namespace DDDInPractice.Logic
+namespace DDDInPractice.Logic.SnackMachines
 {
     public class SnackMachine : AggregateRoot
     {

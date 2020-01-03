@@ -84,8 +84,8 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Common\ViewModel.cs" />
-    <Compile Include="SnackMachineViewModel.cs" />
-    <Compile Include="SnackPileViewModel.cs" />
+    <Compile Include="SnackMachines\SnackMachineViewModel.cs" />
+    <Compile Include="SnackMachines\SnackPileViewModel.cs" />
     <Compile Include="Utils\DialogService.cs" />
     <Page Include="Common\CustomWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -103,7 +103,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SnackMachineViewModel.xaml">
+    <Page Include="SnackMachines\SnackMachineViewModel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

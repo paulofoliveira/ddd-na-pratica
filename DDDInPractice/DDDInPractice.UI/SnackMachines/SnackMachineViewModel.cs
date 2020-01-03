@@ -1,9 +1,10 @@
-﻿using DDDInPractice.Logic;
+﻿using DDDInPractice.Logic.SharedKernel;
+using DDDInPractice.Logic.SnackMachines;
 using DDDInPractice.UI.Common;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DDDInPractice.UI
+namespace DDDInPractice.UI.SnackMachines
 {
     public class SnackMachineViewModel : ViewModel
     {

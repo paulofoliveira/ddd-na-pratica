@@ -1,6 +1,7 @@
-﻿using System;
+﻿using DDDInPractice.Logic.Common;
+using System;
 
-namespace DDDInPractice.Logic
+namespace DDDInPractice.Logic.SharedKernel
 {
     public sealed class Money : ValueObject<Money>
     {

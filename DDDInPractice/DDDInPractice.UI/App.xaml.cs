@@ -1,4 +1,5 @@
 ﻿using DDDInPractice.Logic;
+using DDDInPractice.Logic.Utils;
 
 namespace DDDInPractice.UI
 {

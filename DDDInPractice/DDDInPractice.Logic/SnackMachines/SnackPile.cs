@@ -1,8 +1,9 @@
-﻿using System;
+﻿using DDDInPractice.Logic.Common;
+using System;
 
-using static DDDInPractice.Logic.Snack;
+using static DDDInPractice.Logic.SnackMachines.Snack;
 
-namespace DDDInPractice.Logic
+namespace DDDInPractice.Logic.SnackMachines
 {
     public sealed class SnackPile : ValueObject<SnackPile>
     {
@@ -14,7 +15,7 @@ namespace DDDInPractice.Logic
 
         public SnackPile(Snack snack, int quantity, decimal price) : this()
         {
-            if (quantity < 0 || price < 0) 
+            if (quantity < 0 || price < 0)
                 throw new InvalidOperationException();
 
             if (price % 0.01m > 0)

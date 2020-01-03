@@ -7,7 +7,7 @@ using FluentNHibernate.Conventions.Instances;
 using NHibernate;
 using System.Reflection;
 
-namespace DDDInPractice.Logic
+namespace DDDInPractice.Logic.Utils
 {
     public static class SessionFactory
     {

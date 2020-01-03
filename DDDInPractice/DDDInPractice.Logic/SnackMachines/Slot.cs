@@ -1,5 +1,7 @@
 ﻿
-namespace DDDInPractice.Logic
+using DDDInPractice.Logic.Common;
+
+namespace DDDInPractice.Logic.SnackMachines
 {
     public class Slot : Entity
     {

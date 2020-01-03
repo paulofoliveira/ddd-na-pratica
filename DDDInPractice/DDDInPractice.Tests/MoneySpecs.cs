@@ -1,4 +1,4 @@
-﻿using DDDInPractice.Logic;
+﻿using DDDInPractice.Logic.SharedKernel;
 using FluentAssertions;
 using System;
 using Xunit;
