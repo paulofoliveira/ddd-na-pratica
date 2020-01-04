@@ -73,6 +73,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Atms\AtmViewModel.cs" />
     <Compile Include="Common\Command.cs" />
     <Compile Include="Common\CustomWindow.xaml.cs">
       <DependentUpon>CustomWindow.xaml</DependentUpon>
@@ -87,6 +88,10 @@
     <Compile Include="SnackMachines\SnackMachineViewModel.cs" />
     <Compile Include="SnackMachines\SnackPileViewModel.cs" />
     <Compile Include="Utils\DialogService.cs" />
+    <Page Include="Atms\AtmViewModel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Common\CustomWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
