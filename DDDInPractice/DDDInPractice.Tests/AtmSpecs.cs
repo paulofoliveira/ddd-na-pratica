@@ -1,11 +1,9 @@
 ﻿using DDDInPractice.Logic.Atms;
+using DDDInPractice.Logic.Common;
+using DDDInPractice.Logic.Management;
 using DDDInPractice.Logic.SharedKernel;
+using DDDInPractice.Logic.Utils;
 using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace DDDInPractice.Tests
@@ -43,6 +41,22 @@ namespace DDDInPractice.Tests
 
             atm.TakeMoney(1.1m);
             atm.MoneyCharged.Should().Be(1.12m);
+        }
+
+        [Fact]
+        public void Take_money_raises_an_event()
+        {
+            Initer.Init(@"Server=(localdb)\MSSqlLocalDB;Database=DDDInPractice;Trusted_Connection=true");
+
+            var atm = new Atm();
+            atm.LoadMoney(Money.Dollar);
+
+            atm.TakeMoney(1m);
+
+            var balanceChangedEvent = atm.DomainEvents[0] as BalanceChangedEvent;
+
+            balanceChangedEvent.Should().NotBeNull();
+            balanceChangedEvent.Delta.Should().Be(1.01m);
         }
 
 

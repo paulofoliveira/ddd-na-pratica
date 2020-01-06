@@ -66,7 +66,17 @@
     <Compile Include="Atms\AtmMap.cs" />
     <Compile Include="Atms\AtmRepository.cs" />
     <Compile Include="Common\AggregateRoot.cs" />
+    <Compile Include="Common\DomainEvents.cs" />
     <Compile Include="Common\Entity.cs" />
+    <Compile Include="Common\IDomainEvent.cs" />
+    <Compile Include="Common\IHandler.cs" />
+    <Compile Include="Management\BalanceChangedEvent.cs" />
+    <Compile Include="Management\BalanceChangedEventHandler.cs" />
+    <Compile Include="Management\HeadOffice.cs" />
+    <Compile Include="Management\HeadOfficeInstance.cs" />
+    <Compile Include="Management\HeadOfficeMap.cs" />
+    <Compile Include="Management\HeadOfficeRepository.cs" />
+    <Compile Include="Utils\EventListener.cs" />
     <Compile Include="Utils\Initer.cs" />
     <Compile Include="SharedKernel\Money.cs" />
     <Compile Include="Utils\SessionFactory.cs" />

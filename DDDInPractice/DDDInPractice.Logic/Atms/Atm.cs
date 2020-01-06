@@ -1,4 +1,5 @@
 ﻿using DDDInPractice.Logic.Common;
+using DDDInPractice.Logic.Management;
 using DDDInPractice.Logic.SharedKernel;
 using System;
 using static DDDInPractice.Logic.SharedKernel.Money;
@@ -35,6 +36,10 @@ namespace DDDInPractice.Logic.Atms
 
             var amountWithCommission = CalculateAmountWithCommission(amount);
             MoneyCharged += amountWithCommission;
+
+            //DomainEvents.Raise(new BalanceChangedEvent(amountWithCommission)); // Disparando evento do valor para o domínio.
+
+            AddDomainEvent(new BalanceChangedEvent(amountWithCommission));
         }
 
         public virtual void LoadMoney(Money money)
